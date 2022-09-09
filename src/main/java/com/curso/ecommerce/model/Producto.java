@@ -27,6 +27,16 @@ public class Producto {
 		super();
 	}
 	
+	public Producto(Integer id, String nombre, String descripcion, String imagen, Double precio, int cantidad) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.imagen = imagen;
+		this.precio = precio;
+		this.cantidad = cantidad;
+	}
+
 	public Producto(Integer id, String nombre, String descripcion, String imagen, Double precio, int cantidad,
 			Usuario usuariop) {
 		super();
