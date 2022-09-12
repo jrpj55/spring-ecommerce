@@ -51,6 +51,7 @@
 					</div>
 					<div class="col-lg-6">
 						<form th:action="@{/cart}" method="POST">
+						<input type="hidden" th:value="${productos_home.id}" name="id">
 							<h2 class="card-title" th:text="${productos_home.nombre}"></h2>
 
 							<ul class="list-group">
