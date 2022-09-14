@@ -1,5 +1,6 @@
 package com.curso.ecommerce.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.curso.ecommerce.model.Orden;
 import com.curso.ecommerce.model.Usuario;
+import com.curso.ecommerce.service.InterfazOrdenService;
 import com.curso.ecommerce.service.InterfazUsuarioService;
 
 @Controller
@@ -24,6 +27,8 @@ public class UsuarioController {
 	
 	@Autowired
 	private InterfazUsuarioService usuarioService;//poder acceder a las operaciones CRUD
+	@Autowired
+	private InterfazOrdenService ordenService;
 	
 	//usuario/registro
 	@GetMapping("/registro")
@@ -64,6 +69,9 @@ public class UsuarioController {
 	@GetMapping("/compras")
 	public String obtenerCompras(Model model, HttpSession sesion) {
 		model.addAttribute("var_sesion", sesion.getAttribute("idUsuario"));
+		Usuario usuario = usuarioService.findById(Integer.parseInt(sesion.getAttribute("idUsuario").toString())).get();
+		List<Orden> ordenes = ordenService.findByUsuarioo(usuario);
+		model.addAttribute("var_ordenes", ordenes);
 		return "usuario/compras";
 	}
 }
