@@ -25,6 +25,12 @@ public class UsuarioServiceImpl implements InterfazUsuarioService{
 		
 		return usuarioRepository.save(usuario);
 	}
+
+	@Override
+	public Optional<Usuario> findByEmail(String email) {
+		
+		return usuarioRepository.findByEmail(email);
+	}
 	
 	
 }
