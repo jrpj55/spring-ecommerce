@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -62,7 +63,7 @@ public class UsuarioController {
 			}
 			
 		}else {
-			log.info("Uusario no existe");
+			log.info("Usuario no existe");
 		}
 		return "redirect:/";
 	}
@@ -73,5 +74,15 @@ public class UsuarioController {
 		List<Orden> ordenes = ordenService.findByUsuarioo(usuario);
 		model.addAttribute("var_ordenes", ordenes);
 		return "usuario/compras";
+	}
+	@GetMapping("/detalleCompra/{id}")
+	public String detalleCompra(@PathVariable Integer id, HttpSession sesion, Model model) {
+		
+		//sesion
+		model.addAttribute("var_sesion", sesion.getAttribute("idUsuario"));
+		log.info("id de la orden: {}", id);
+		Optional<Orden> orden=ordenService.findById(id);
+		model.addAttribute("var_detalle", orden.get().getDetalle());
+		return "usuario/detallecompra";
 	}
 }
