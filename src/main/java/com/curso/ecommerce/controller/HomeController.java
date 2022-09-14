@@ -157,4 +157,19 @@ public class HomeController {
 		detalles.clear();
 		return "redirect:/";
 	}
+	@PostMapping("/buscar")
+	public String buscarProducto(@RequestParam String var_nombre, Model model){
+		log.info("Nombre del producto: {}",var_nombre );
+		//Obtiene todos los productos productoService.findAll
+		//Pasamos por un stream() es una API en java 8 permite realizar operaciones sobre la colección
+		//como por ejemplo buscar, filtar, reordenar, reducir, etc
+		//filtramos con filter que es una funcion lambda
+		//le pasamos el predicado que es lo queremos hacer 
+		//a traves de una ficcion fecha anonima trae el nombre del prodcuto
+		//y el metodo contains le pasamos la cadena de caracteres que contengan ese nombre me lo devuelva en una lista
+		List<Producto> productos = productoService.findAll().stream().filter(p ->p.getNombre().contains(var_nombre)).toList();
+		model.addAttribute("proto", productos); //la lista que recibimos en el home y este de nombre proto
+		
+		return "usuario/home";
+	}
 }
