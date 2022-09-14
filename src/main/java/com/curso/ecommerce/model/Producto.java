@@ -19,24 +19,15 @@ public class Producto {
 	private String imagen;
 	private Double precio;
 	private int cantidad;
+	
 	@ManyToOne
 	private Usuario usuariop;
 	
 	
 	public Producto() {
-		super();
+		
 	}
 	
-	public Producto(Integer id, String nombre, String descripcion, String imagen, Double precio, int cantidad) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-		this.precio = precio;
-		this.cantidad = cantidad;
-	}
-
 	public Producto(Integer id, String nombre, String descripcion, String imagen, Double precio, int cantidad,
 			Usuario usuariop) {
 		super();
@@ -97,8 +88,10 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
-				+ ", precio=" + precio + ", cantidad=" + cantidad + "]";
+				+ ", precio=" + precio + ", cantidad=" + cantidad + ", usuariop=" + usuariop + "]";
 	}
+
+	
 	
 	
 

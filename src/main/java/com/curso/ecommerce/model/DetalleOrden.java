@@ -19,8 +19,10 @@ public class DetalleOrden {
 	private double cantidad;
 	private double precio;
 	private double total;
-	@OneToOne
+	
+	@ManyToOne
 	private Orden objOrden;
+	
 	@ManyToOne
 	private Producto objProducto;
 	
@@ -33,7 +35,7 @@ public class DetalleOrden {
 		this.total = total;
 	}
 	public DetalleOrden() {
-		super();
+		
 	}
 	public Integer getId() {
 		return id;
